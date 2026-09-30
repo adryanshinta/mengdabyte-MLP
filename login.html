@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<title id="title">Mengdabyte</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body data-page="login">
+<div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<main class="shell">
+
+  <!-- ============ KIRI: KARTU LOGIN ============ -->
+  <section class="card" aria-labelledby="brand-name">
+    <div class="brand">
+      <img class="brand-logo" src="img/logo.svg" alt="Logo Mengdabyte" width="52" height="52" />
+      <div class="brand-text">
+        <h1 class="brand-name" id="brand-name">Mengdabyte</h1>
+      </div>
+    </div>
+
+    <div class="marquee" role="note">
+      <span>Gunakan layanan internet dengan bijak &middot; Jangan lupa beristirahat &middot; Jaga keamanan akun Anda</span>
+    </div>
+
+    <!-- ===== Pilih metode login ===== -->
+    <div class="tabs" role="tablist" aria-label="Metode login">
+      <button type="button" class="tab is-active" id="tab-voucher" role="tab"
+              aria-selected="true" aria-controls="panel-voucher" data-mode="voucher">Kode Voucher</button>
+      <button type="button" class="tab" id="tab-akun" role="tab"
+              aria-selected="false" aria-controls="panel-akun" data-mode="akun">Akun</button>
+    </div>
+
+    <!-- ===== Panel: Kode Voucher ===== -->
+    <div class="panel" id="panel-voucher" role="tabpanel" aria-labelledby="tab-voucher" data-panel="voucher">
+      <p class="hint">Masukkan kode voucher Anda, lalu tekan Masuk.</p>
+
+      <form name="voucher" action="$(link-login-only)" method="post"
+            onsubmit="return submitVoucher(this)">
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+
+        <label class="field">
+          <span class="sr-only">Kode Voucher</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v1a2 2 0 0 0 0 4v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1a2 2 0 0 0 0-4V9z" />
+            <path d="M12 7v10" stroke-dasharray="2 2" />
+          </svg>
+          <input name="voucher" type="text" placeholder="Kode Voucher" autocapitalize="none"
+                 autocorrect="off" spellcheck="false" autocomplete="off" required />
+        </label>
+
+        <button type="submit" class="btn btn-primary">MASUK</button>
+      </form>
+
+      $(if trial == 'yes')
+      <div class="actions">
+        <a class="btn btn-trial" href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">COBA GRATIS</a>
+      </div>
+      $(elif trial == 'no')
+      <div class="actions">
+        <span class="btn btn-disabled" aria-disabled="true">TRIAL NONAKTIF</span>
+      </div>
+      $(endif)
+    </div>
+
+    <!-- ===== Panel: Akun ===== -->
+    <div class="panel" id="panel-akun" role="tabpanel" aria-labelledby="tab-akun" data-panel="akun" hidden>
+      <p class="hint">Masuk menggunakan Username &amp; Password akun Anda.</p>
+
+      <form name="akun" action="$(link-login-only)" method="post"
+            onsubmit="return submitAkun(this)">
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+
+        <label class="field">
+          <span class="sr-only">Username</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          <input name="username" type="text" placeholder="Username" autocapitalize="none"
+                 autocorrect="off" spellcheck="false" autocomplete="username" required />
+        </label>
+
+        <label class="field">
+          <span class="sr-only">Password</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          <input name="password" type="password" placeholder="Password" autocomplete="current-password" required />
+        </label>
+
+        <button type="submit" class="btn btn-primary">LOGIN</button>
+      </form>
+    </div>
+
+    $(if error)<div class="alert" role="alert">$(error)</div>$(endif)
+  </section>
+
+  <!-- ============ KANAN: DAFTAR HARGA ============ -->
+  <section class="card" aria-labelledby="price-title">
+    <h2 class="section-title" id="price-title">Daftar Paket &amp; Harga</h2>
+    <p class="hint">Pilih paket sesuai kebutuhan Anda, lalu masukkan kode voucher di halaman login.</p>
+    <div data-prices></div>
+  </section>
+
+  <footer class="footer">
+    &copy; <span id="year">2026</span> Mengdabyte
+  </footer>
+</main>
+
+<script src="js/app.js"></script>
+$(if chap-id)<script src="md5.js"></script>$(endif)
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ----------------------------------------------------------------
+     Mode login: "voucher" (hanya isi kode) atau "akun" (user+password).
+     Di Mikhmon user = password untuk voucher, jadi kode cukup dikirim
+     sekali sebagai username DAN password.
+     ---------------------------------------------------------------- */
+
+  function switchMode(mode) {
+    document.querySelectorAll('[data-panel]').forEach(function (p) {
+      p.hidden = p.getAttribute('data-panel') !== mode;
+    });
+    document.querySelectorAll('[data-mode]').forEach(function (t) {
+      var on = t.getAttribute('data-mode') === mode;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+  }
+
+  document.querySelectorAll('[data-mode]').forEach(function (tab) {
+    tab.addEventListener('click', function () { switchMode(tab.getAttribute('data-mode')); });
+  });
+
+  /* Login voucher: salin kode ke username & password lalu kirim.
+     Default: password = kode (setelan Mikhmon user=password).
+     Bila CHAP aktif, password diganti dengan hash MD5. */
+  function submitVoucher(form) {
+    var kode = (form.voucher.value || '').trim();
+    if (!kode) return false;
+
+    form.username.value = kode;
+    form.password.value = kode;
+    $(if chap-id)
+    form.password.value = hexMD5('$(chap-id)' + kode + '$(chap-challenge)');
+    $(endif)
+    return true;
+  }
+
+  /* Login akun: dukung CHAP bila aktif. */
+  function submitAkun(form) {
+    $(if chap-id)
+    form.password.value = hexMD5('$(chap-id)' + form.password.value + '$(chap-challenge)');
+    $(endif)
+    return true;
+  }
+</script>
+</body>
+</html>

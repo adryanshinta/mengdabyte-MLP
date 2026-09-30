@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<title id="title">Berhasil</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="refresh" content="2; url=$(link-redirect)" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+<link rel="stylesheet" href="css/style.css" />
+<script>
+  function startClock() {
+    $(if popup == 'true')
+    window.open('$(link-status)', 'hotspot_status',
+      'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=300,height=360');
+    $(endif)
+    var dest = '$(link-redirect)';
+    if (dest && dest.indexOf('$(') === -1) window.location.href = dest;
+  }
+</script>
+</head>
+
+<body data-page="berhasil" onload="startClock()">
+<div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<main class="shell single">
+  <section class="card center">
+    <div class="brand" style="justify-content:center">
+      <img class="brand-logo" src="img/logo.svg" alt="Logo Mengdabyte" width="54" height="54" />
+      <div class="brand-text" style="text-align:left">
+        <h1 class="brand-name" id="brand-name">Mengdabyte</h1>
+      </div>
+    </div>
+
+    <div class="status-hero">
+      <p class="eyebrow">Berhasil</p>
+      <p class="identity">Kode Voucher Benar</p>
+      <span class="dot">Mengalihkan&hellip;</span>
+    </div>
+
+    <div class="alert ok" role="status">Anda akan diarahkan ke halaman tujuan secara otomatis.</div>
+
+    <p class="hint mt-16">
+      Belum bisa mengakses internet?
+      <a href="$(link-login)" style="color:var(--accent-1)">Klik di sini</a>.
+    </p>
+  </section>
+
+  <footer class="footer">
+    &copy; <span id="year">2026</span> Mengdabyte
+  </footer>
+</main>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

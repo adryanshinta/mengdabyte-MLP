@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<title id="title">Logout</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+<link rel="stylesheet" href="css/style.css" />
+<script>
+  function openLogin() {
+    if (window.name != 'hotspot_logout') return true;
+    window.open('$(link-login)', '_blank', '');
+    window.close();
+    return false;
+  }
+</script>
+</head>
+
+<body data-page="logout">
+<div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<main class="shell single">
+
+  <section class="card" aria-labelledby="brand-name">
+    <div class="brand">
+      <img class="brand-logo" src="img/logo.svg" alt="Logo Mengdabyte" width="54" height="54" />
+      <div class="brand-text">
+        <h1 class="brand-name" id="brand-name">Mengdabyte</h1>
+      </div>
+    </div>
+
+    <div class="status-hero">
+      <p class="eyebrow">Terima Kasih</p>
+      <p class="identity">Anda Telah Logout</p>
+      <span class="dot" style="color:var(--muted)">Koneksi diakhiri</span>
+    </div>
+
+    <h2 class="section-title">Ringkasan Sesi</h2>
+    <table class="info">
+      <tr><th>User</th><td>$(username)</td></tr>
+      <tr><th>IP Address</th><td>$(ip)</td></tr>
+      <tr><th>MAC Address</th><td>$(mac)</td></tr>
+      <tr><th>Traffic (Up / Down)</th><td>$(bytes-in-nice) / $(bytes-out-nice)</td></tr>
+      <tr><th>Durasi Aktif</th><td>$(uptime)</td></tr>
+      $(if remain-bytes-total)
+      <tr><th>Sisa Kuota</th><td>$(remain-bytes-total-nice)</td></tr>
+      $(endif)
+      $(if session-time-left)
+      <tr><th>Sisa Waktu</th><td>$(session-time-left)</td></tr>
+      $(endif)
+    </table>
+
+    <form action="$(link-login)" name="login" onsubmit="return openLogin()" class="mt-16">
+      <button type="submit" class="btn btn-primary">LOGIN KEMBALI</button>
+    </form>
+  </section>
+
+  <footer class="footer">
+    &copy; <span id="year">2026</span> Mengdabyte
+  </footer>
+</main>
+
+<script src="js/app.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

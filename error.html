@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<title id="title">Error</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body data-page="error">
+<div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<main class="shell single">
+  <section class="card center">
+    <div class="brand" style="justify-content:center">
+      <img class="brand-logo" src="img/logo.svg" alt="Logo Mengdabyte" width="54" height="54" />
+      <div class="brand-text" style="text-align:left">
+        <h1 class="brand-name" id="brand-name">Mengdabyte</h1>
+      </div>
+    </div>
+
+    <div class="status-hero">
+      <p class="eyebrow">Terjadi Kesalahan</p>
+      <p class="identity">Tidak Dapat Diproses</p>
+    </div>
+
+    <div class="alert" role="alert">$(error)</div>
+
+    <a class="btn btn-primary mt-16" href="$(link-login)">KEMBALI KE LOGIN</a>
+  </section>
+
+  <footer class="footer">
+    &copy; <span id="year">2026</span> Mengdabyte
+  </footer>
+</main>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

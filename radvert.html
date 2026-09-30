@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<title>Mengdabyte &middot; Iklan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="refresh" content="2; url=$(link-orig)" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+<link rel="stylesheet" href="css/style.css" />
+<script>
+  var advertPopup = '';
+  function openOrig() { if (window.focus && advertPopup) advertPopup.focus(); window.location.href = unescape('$(link-orig-esc)'); }
+  function openAd() { window.location.href = unescape('$(link-redirect-esc)'); }
+  function openAdvert() {
+    if (window.name != 'hotspot_advert') {
+      advertPopup = window.open('$(link-redirect)', 'hotspot_advert', '');
+      setTimeout(openOrig, 1000);
+      return;
+    }
+    setTimeout(openAd, 1000);
+  }
+</script>
+</head>
+<body onload="openAdvert()">
+<div class="bg-blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+<main class="shell single">
+  <section class="card center">
+    <div class="status-hero">
+      <p class="eyebrow">Iklan</p>
+      <p class="identity">Menampilkan Iklan</p>
+      <span class="dot">Mohon tunggu&hellip;</span>
+    </div>
+    <p class="hint">Jika tidak terjadi apa-apa, buka
+      <a href="$(link-redirect)" target="hotspot_advert" style="color:var(--accent-1)">iklan</a> secara manual.</p>
+  </section>
+</main>
+</body>
+</html>
